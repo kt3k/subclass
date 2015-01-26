@@ -11,6 +11,17 @@
  */
 module.exports = function (parent, classDefinition) {
 
+    if (classDefinition == null) {
+
+        // if there's no second argument
+        // then use the first argument as class definition
+        // and suppose parent is Object
+
+        classDefinition = parent;
+        parent = Object;
+
+    }
+
     // create proxy constructor for inheritance
     var proxy = function () {};
 
