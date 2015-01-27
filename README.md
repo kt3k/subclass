@@ -2,7 +2,7 @@
 
 > ES5 subtyping utility
 
-- class extension by a function, not by an object literal (as a lot of others do)
+- class extension by a function, not by an object literal (as other libs do)
 - support of instanceof class detection
 - setting prototype.constructor properly
 - parent method call support
@@ -61,3 +61,17 @@ var MySubclass = subclass(MyClass, function (pt, parent) {
 
 });
 ```
+
+
+# other approaches to write class in ES5
+
+- [runtime]
+  - Ext JS ( Ext.extend )
+  - [function-branch](https://github.com/kt3k/function-branch)
+  - npm search of inheritance, subclass or subtype gives you a lot of examples
+- [through compiler]
+  - TypeScript
+  - CoffeeScript
+  - Traceur
+  - sweetjs
+  - etc...
