@@ -46,12 +46,12 @@ subclass = require('subclassjs');
 
 // example of calling parent's method
 // `super` means basically parent's prototype
-var MySubclass = subclass(MyClass, function (pt, super) {
+var MySubclass = subclass(MyClass, function (pt, parent) {
     'use strict';
 
     pt.myMethod = function () {
 
-         var result = super.myMethod();
+         var result = parent.myMethod();
 
          // ... do something ...
 
