@@ -2,6 +2,12 @@
 
 > ES5 subtyping utility
 
+- class extension by a function, not by an object literal (as a lot of others do)
+- support of instanceof class detection
+- setting prototype.constructor properly
+- parent method call support
+- no global side effect
+
 # Usage
 
 ```js
