@@ -63,7 +63,7 @@ var MySubclass = subclass(MyClass, function (pt, parent) {
 ```
 
 
-# other approaches to write class in ES5
+# Other approaches to write classes in ES5
 
 - [runtime]
   - Ext JS ( Ext.extend )
