@@ -13,7 +13,7 @@
      * @param {Function<(pt: Object, super: Object) => void>} classDefinition
      * @returns {Function}
      */
-    module.exports = function (parent, classDefinition) {
+    var subclass = function (parent, classDefinition) {
 
         if (classDefinition == null) {
 
@@ -81,7 +81,7 @@
     } else if (typeof module !== 'undefined' && module.exports) {
 
         // CommonJS
-        this.module.exports = subclass;
+        module.exports = subclass;
 
     } else {
 
