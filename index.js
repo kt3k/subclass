@@ -2,66 +2,91 @@
  * subclassjs v1.0.0
  */
 
-/**
- * Generates a subclass with given parent class and additional class definition.
- *
- * @param {Function} parent The parent class constructor
- * @param {Function<(pt: Object, super: Object) => void>} classDefinition
- * @returns {Function}
- */
-module.exports = function (parent, classDefinition) {
 
-    if (classDefinition == null) {
+(function () {
+    'use strict';
 
-        // if there's no second argument
-        // then use the first argument as class definition
-        // and suppose parent is Object
+    /**
+     * Generates a subclass with given parent class and additional class definition.
+     *
+     * @param {Function} parent The parent class constructor
+     * @param {Function<(pt: Object, super: Object) => void>} classDefinition
+     * @returns {Function}
+     */
+    module.exports = function (parent, classDefinition) {
 
-        classDefinition = parent;
-        parent = Object;
+        if (classDefinition == null) {
 
-    }
+            // if there's no second argument
+            // then use the first argument as class definition
+            // and suppose parent is Object
 
-    // create proxy constructor for inheritance
-    var proxy = function () {};
+            classDefinition = parent;
+            parent = Object;
 
-    proxy.prototype = parent.prototype;
+        }
 
-    var prototype = new proxy();
+        // create proxy constructor for inheritance
+        var proxy = function () {};
+
+        proxy.prototype = parent.prototype;
+
+        var prototype = new proxy();
 
 
-    if (typeof classDefinition === 'function') {
+        if (typeof classDefinition === 'function') {
 
-        // apply the given class definition
-        classDefinition(prototype, parent.prototype);
+            // apply the given class definition
+            classDefinition(prototype, parent.prototype);
 
-    } else if (classDefinition == null) {
+        } else if (classDefinition == null) {
 
-        // do nothing
+            // do nothing
+
+        } else {
+
+            throw Error('Class.branch(function (prototype, super) {...})');
+
+        }
+
+
+        if (prototype.constructor === proxy.prototype.constructor) {
+
+            // if no child constructor definition
+            // create one for the child
+            prototype.constructor = function () {
+
+                proxy.prototype.constructor.apply(this, arguments);
+
+            };
+        }
+
+
+        // set prototype to constructor
+        prototype.constructor.prototype = prototype;
+
+
+        return prototype.constructor;
+
+    };
+
+
+    if (typeof define === 'function' && define.amd) {
+
+        // AMD
+        define(function () {
+            return subclass;
+        });
+
+    } else if (typeof module !== 'undefined' && module.exports) {
+
+        // CommonJS
+        this.module.exports = subclass;
 
     } else {
 
-        throw Error('Class.branch(function (prototype, super) {...})');
-
+        // global export
+        this.subclass = subclass;
     }
 
-
-    if (prototype.constructor === proxy.prototype.constructor) {
-
-        // if no child constructor definition
-        // create one for the child
-        prototype.constructor = function () {
-
-            proxy.prototype.constructor.apply(this, arguments);
-
-        };
-    }
-
-
-    // set prototype to constructor
-    prototype.constructor.prototype = prototype;
-
-
-    return prototype.constructor;
-
-};
+}.call(this));
