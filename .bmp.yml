@@ -2,3 +2,4 @@ version: 1.0.0
 files:
   README.md: subclassjs v%.%.%
   package.json: '"version": "%.%.%"'
+  index.js: subclassjs v%.%.%
