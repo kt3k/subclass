@@ -1,7 +1,7 @@
 {
   "name": "subclassjs",
   "version": "1.2.0",
-  "description": "ES5 subtyping utility",
+  "description": "Yet another inheritance utility",
   "main": "index.js",
   "scripts": {
     "test": "grunt"

@@ -1,6 +1,6 @@
 # subclassjs v1.2.0
 
-> ES5 subtyping utility
+> Yet another inheritance utility
 
 - class extension by a function, not by an object literal (as other libs do)
 - support of instanceof class detection
