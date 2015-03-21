@@ -10,50 +10,77 @@
 
 # Usage
 
+## Basic
+
 ```js
 subclass = require('subclassjs');
 
-// define plain old javascript class
-var MyClass = subclass(Object, function (pt) {
+// define a class
+var Child = subclass(Parent, function (pt) {
      'use strict';
 
-     pt.myMethod = function () {...};
-     ...
+     pt.myMethod = function () { /* ... */ };
+
+     //...
 
 });
 ```
 
+## Default parent
+
+You can omit first argument. If it's omitted, it inherits Object class.
 
 ```js
-subclass = require('subclassjs');
+var MyClass = subclass(function (pt) { /* ... */ });
+```
 
-// inheritance
-var MySubclass = subclass(MyClass, function (pt) {
-     'use strict';
+The above is the same as the below;
 
-     pt.myAnotherMethod = function () {
-         // ...
-     };
+```js
+var MyClass = subclass(Object, function (pt) { /* ... */ });
+```
 
-     // ...
+## Constructor
+
+You can define the constructor of a child class as follows.
+
+```js
+
+var ClassFoo = subclass(function (pt) {
+
+    pt.constructor = function () {
+
+        this.bar = 42;
+
+    };
 
 });
+
 ```
 
 
-```js
-subclass = require('subclassjs');
+## Inheritance
 
-// example of calling parent's method
-// `super` means basically parent's prototype
-var MySubclass = subclass(MyClass, function (pt, parent) {
-    'use strict';
+You can inherit classes. The second parameter of the defining function is parent's prototype and you can call parent's method through it.
+
+
+```js
+
+var ChildClass = subclass(ParentClass, function (pt, parent) {
+
+    pt.constructor = function () {
+
+        parent.constructor.apply(this, arguments);
+
+        // do something
+
+    };
 
     pt.myMethod = function () {
 
          var result = parent.myMethod();
 
-         // ... do something ...
+         // do something
 
          return result;
 
@@ -62,6 +89,25 @@ var MySubclass = subclass(MyClass, function (pt, parent) {
 });
 ```
 
+
+## Default constructor
+
+`subclass` provides the default constructor for a child class.
+
+```js
+
+var ChildClass = subclass(ParentClass, function (pt) {
+
+    // you can define static method here
+    pt.constructor.staticMethod = function (str) {
+
+        // ...
+
+    };
+
+});
+
+```
 
 # Other approaches to write classes in ES5
 
