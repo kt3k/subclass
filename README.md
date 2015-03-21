@@ -116,6 +116,7 @@ var ChildClass = subclass(ParentClass, function (pt) {
   - [function-branch](https://github.com/kt3k/function-branch)
   - npm search of inheritance, subclass or subtype gives you a lot of examples
 - [through compiler]
+  - babel
   - TypeScript
   - CoffeeScript
   - Traceur
