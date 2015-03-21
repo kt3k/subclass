@@ -1,4 +1,4 @@
-# subclassjs v1.1.1
+# subclassjs v1.2.0
 
 > ES5 subtyping utility
 
