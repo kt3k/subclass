@@ -26,6 +26,8 @@ var Child = subclass(Parent, function (pt) {
 });
 ```
 
+The first argument `pt` of the defining function is the actual prototype object of the child class to be defined. You can define methods of the child class by setting the properties on it.
+
 ## Default parent
 
 You can omit first argument. If it's omitted, it inherits Object class.
