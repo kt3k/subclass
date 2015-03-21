@@ -54,7 +54,7 @@ describe('subclass', function () {
     });
 
 
-    it('subclasses existing class', function () {
+    it('subclasses the given class', function () {
 
         var MyClass = subclass(Object, function (pt) {
 
@@ -83,7 +83,7 @@ describe('subclass', function () {
     });
 
 
-    it('creates class with given constructor', function () {
+    it('creates a class with the given constructor', function () {
 
         var MyClass = subclass(Object, function (pt) {
 
@@ -104,7 +104,7 @@ describe('subclass', function () {
     });
 
 
-    it('inherits constructor if subclass does not provide one', function () {
+    it('inherits constructor if no constructor defined in subclass', function () {
 
         var MyClass = subclass(Object, function (pt) {
 
@@ -125,6 +125,18 @@ describe('subclass', function () {
         expect(myObj.constructor).to.not.equal(MyClass);
         expect(myObj.name).to.equal('Paul');
         expect(myObj.age).to.equal(34);
+
+    });
+
+
+    it('inherits Object class if first argument is omitted', function () {
+
+        var Subclass = subclass(function () {});
+
+        var obj = new Subclass();
+
+        expect(obj).to.be.instanceof(Subclass);
+        expect(obj).to.be.instanceof(Object);
 
     });
 
