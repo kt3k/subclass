@@ -34,6 +34,15 @@
         var prototype = new proxy();
 
 
+        // creates child's default constructor
+        // this can be overwritten in classDefinition
+        prototype.constructor = function () {
+
+            proxy.prototype.constructor.apply(this, arguments);
+
+        };
+
+
         if (typeof classDefinition === 'function') {
 
             // apply the given class definition
@@ -49,17 +58,6 @@
 
         }
 
-
-        if (prototype.constructor === proxy.prototype.constructor) {
-
-            // if no child constructor definition
-            // create one for the child
-            prototype.constructor = function () {
-
-                proxy.prototype.constructor.apply(this, arguments);
-
-            };
-        }
 
 
         // set prototype to constructor

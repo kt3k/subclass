@@ -140,4 +140,26 @@ describe('subclass', function () {
 
     });
 
+    it('provides default constructor for subclass when subclass definition is running', function () {
+
+        var SomeClass = function () { this.a = 42; };
+
+        var dummyMethod = function () {};
+
+        var ChildClass = subclass(SomeClass, function (pt) {
+
+            expect(pt.constructor).to.be.a('function');
+
+            var obj = new pt.constructor();
+
+            expect(obj.a).to.equal(42);
+
+            pt.constructor.staticMethod = dummyMethod;
+
+        });
+
+        expect(ChildClass.staticMethod).to.equal(dummyMethod);
+
+    });
+
 });
