@@ -1,5 +1,5 @@
 /**
- * subclassjs v1.2.0
+ * subclassjs v1.3.0
  */
 
 
