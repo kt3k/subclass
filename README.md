@@ -1,6 +1,8 @@
 # subclassjs v1.3.0
 
-> Easy simple class inheritance tool for es5 or above.
+> Easy simple class inheritance tool, just works perfect in es5.
+
+> For those who don't like to use "compilers" but like to use `class`.
 
 - Class definition by a **function**:zap:, not by an object.
 - `instanceof` works.
