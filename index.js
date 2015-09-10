@@ -26,6 +26,12 @@
 
         }
 
+        if (parent == null) {
+
+            throw new Error('parent cannot be null: definingFunction=' + classDefinition.toString());
+
+        }
+
         // create proxy constructor for inheritance
         var proxy = function () {};
 
@@ -54,7 +60,7 @@
 
         } else {
 
-            throw Error('Class.branch(function (prototype, super) {...})');
+            throw new Error('the type of classDefinition is wrong: ' + typeof classDefinition);
 
         }
 
@@ -69,22 +75,15 @@
     };
 
 
-    if (typeof define === 'function' && define.amd) {
-
-        // AMD
-        define(function () {
-            return subclass;
-        });
-
-    } else if (typeof module !== 'undefined' && module.exports) {
+    if (typeof module !== 'undefined' && module.exports) {
 
         // CommonJS
         module.exports = subclass;
 
     } else {
 
-        // global export
-        this.subclass = subclass;
+        // window export
+        window.subclass = subclass;
     }
 
-}.call(this));
+}());

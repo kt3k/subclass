@@ -162,4 +162,14 @@ describe('subclass', function () {
 
     });
 
+    it('throws if the parent is null', function () {
+
+        expect(function () {
+
+            subclass(null, function () {});
+
+        }).to.throw();
+
+    });
+
 });
